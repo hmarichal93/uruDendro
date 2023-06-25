@@ -15,7 +15,7 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 
 from lib.io import load_image, load_json
-from lib.sampling import build_rays, compute_intersection, draw_ray_curve_and_intersections
+from lib.sampling import build_rays, compute_intersection
 import lib.chain as ch
 import lib.drawing as dr
 

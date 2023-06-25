@@ -5,6 +5,7 @@ import argparse
 from pathlib import Path
 import json
 
+from lib.io import load_json, write_json
 def download_file_and_store_id_in_dir(images_url, dataset_path, local_filename="images.zip"):
 
     os.system(f"cd {dataset_path} && wget -r -np -nH --cut-dirs=3 -R index.html {images_url}")
@@ -16,26 +17,6 @@ def download_file_and_store_id_in_dir(images_url, dataset_path, local_filename="
     return
 
 
-def load_json(filepath: str) -> dict:
-    """
-    Load json utility.
-    :param filepath: file to json file
-    :return: the loaded json as a dictionary
-    """
-    with open(str(filepath), 'r') as f:
-        data = json.load(f)
-    return data
-
-
-def write_json(dict_to_save: dict, filepath: str) -> None:
-    """
-    Write dictionary to disk
-    :param dict_to_save: serializable dictionary to save
-    :param filepath: path where to save
-    :return: void
-    """
-    with open(str(filepath), 'w') as f:
-        json.dump(dict_to_save, f)
 
 def process_annotations(annotations_path, images_path):
     annotations_path = Path(f"{annotations_path}/")
