@@ -26,3 +26,10 @@ where DETECTION_FILENAME is the path to the detection file, GROUND_TRUTH_FILENAM
 IMAGE_FILENAME is the path to the image file, CX is the x pith coordinate in pixels, CY is the y pith coordinate in pixel, 
 THRESHOLD is the threshold to consider a detection as valid (between 0 and 1) and OUTPUT_DIR is the path to the 
 results output directory.
+
+
+## Citation
+```
+@misc{
+}
+```
