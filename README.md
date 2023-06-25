@@ -1,6 +1,17 @@
 # UruDendro, a public dataset of cross-section images of Pinus Taeda 
 Link to web-site: https://iie.fing.edu.uy/proyectos/madera/
 
+## Requirements
+- Python 3.6
+- OpenCV 4.2.0
+- Labelme
+- SHAPELY
+- Numpy 
+Install the requirements using the following command:
+```bash
+pip install -r requirements.txt
+```
+
 ## Download Dataset
 Download the dataset using the following command:
 ```bash

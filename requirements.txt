@@ -1,0 +1,7 @@
+numpy
+labelme
+opencv-python
+shapely
+argparse
+pathlib
+
