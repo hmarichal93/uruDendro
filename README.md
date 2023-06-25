@@ -4,21 +4,21 @@ Link to web-site: https://iie.fing.edu.uy/proyectos/madera/
 ## Download Dataset
 Download the dataset using the following command:
 ```bash
-python scripts/dataset.py --download --dataset_path DATASET_PATH
+python dataset.py --download --dataset_path DATASET_PATH
 ```
 where DATASET_PATH is the path where the dataset will be downloaded. DATASET_PATH must be absolute path.
 
 ## Visualize Dataset
 Visualize the dataset using the following command:
 ```bash
-python scripts/dataset.py --visualize --annotation_file ANNOTATION_FILE
+python dataset.py --visualize --annotation_file ANNOTATION_FILE
 ```
 where ANNOTATION_FILE is the path to the annotation file.
 
 ## Metric Evaluation
 Tree ring Detection evaluation metrics used by UruDendro. The evaluation code provided here can be used to obtain results on the publicly available UruDendro dataset. It computes multiple metrics described below.
 ```bash
-python scripts/metric_influence_area.py --dt_filename DETECTION_FILENAME
+python metric_influence_area.py --dt_filename DETECTION_FILENAME
  --gt_filename GROUND_TRUTH_FILENAME  --img_FILENAME IMAGE_FILENAME 
  --cx CX --cy CY --th THRESHOLD --output_dir OUTPUT_DIR
 ```
