@@ -42,6 +42,12 @@ results output directory.
 
 ## Citation
 ```
-@misc{
+@misc{marichal2024urudendro,
+      title={UruDendro, a public dataset of cross-section images of Pinus taeda}, 
+      author={Henry Marichal and Diego Passarella and Christine Lucas and Ludmila Profumo and Verónica Casaravilla and María Noel Rocha Galli and Serrana Ambite and Gregory Randall},
+      year={2024},
+      eprint={2404.10856},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```
