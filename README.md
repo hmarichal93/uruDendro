@@ -1,6 +1,5 @@
 # UruDendro, a public dataset of cross-section images of Pinus Taeda 
-[web-site](https://iie.fing.edu.uy/proyectos/madera/)
-[paper](https://arxiv.org/abs/2404.10856)
+[Web-site](https://iie.fing.edu.uy/proyectos/madera/) | [Paper](https://arxiv.org/abs/2404.10856)
 
 ## Requirements
 - Python 3.6
