@@ -111,7 +111,13 @@ def compute_intersection(l_rays, curve, chain_id, center):
     @param center: disk image center
     @return: nodes list
     """
+    ###shapely polygon validation
+    if not curve.is_valid:
+        curve = curve.buffer(0)
+        if not curve.is_valid:
+            raise ValueError('Invalid shapely polygon')
 
+    ##########
     l_curve_nodes = []
     for radii in l_rays:
         try:
@@ -124,6 +130,9 @@ def compute_intersection(l_rays, curve, chain_id, center):
                 dot = Node(**params)
                 if dot not in l_curve_nodes and get_node_from_list_by_angle(l_curve_nodes, radii.direction) is None:
                     l_curve_nodes.append(dot)
+
+            else:
+                print('Empty intersection')
 
         except NotImplementedError:
             continue
