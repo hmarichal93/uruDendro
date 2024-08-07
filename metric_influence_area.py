@@ -7,6 +7,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
+import cv2
 import numpy as np
 import argparse
 from shapely.geometry import Polygon, LineString
@@ -43,18 +44,11 @@ class InfluenceArea:
         # 4.0 sampling detection and ground truth rings by Nr rays.
         height, width, _ = self.img.shape
         l_rays = build_rays(self.Nr, height, width, self.center)
-        #self.draw_ray_and_dt_and_gt(l_rays, [], [], self.img.copy(),
-        #                            f'{self.output_dir}/dots_curve_and_rays.png')
-        self.dt_poly = self.get_sampled_polygon_rings(dt_file, l_rays, self.center, debug=True)
-        #self.draw_ray_and_dt_and_gt(l_rays, [], self.dt_poly, self.img.copy(),
-        #                            f'{self.output_dir}/dots_curve_and_rays_outside.png')
+        self.dt_poly = self.get_sampled_polygon_rings(dt_file, l_rays, self.center)
         self.dt_poly.sort(key=lambda x: x.area)
         self.gt_poly = self.get_sampled_polygon_rings(gt_file, l_rays, self.center)
         self.gt_poly.sort(key=lambda x: x.area)
-        # 5.0 draw rays and rings
-        #self.draw_ray_and_dt_and_gt(l_rays, self.gt_poly, self.dt_poly, self.img.copy(),
-        #                            f'{self.output_dir}/dots_curve_and_rays.png')
-        #print("Values")
+
 
 
 
@@ -85,17 +79,21 @@ class InfluenceArea:
                                         f'{self.output_dir}/dots_curve_and_rays_sampled.png')
         return l_poly_sampled
 
-    def sampling_rings(self, l_poly, l_rays, center):
+    def sampling_rings(self, l_poly, l_rays, center, debug=False):
         l_poly_samples = []
         cy, cx = center
-        from shapely.geometry import Point
-        center_point = Point(cy, cx)
-        for poly in l_poly:
+        if debug:
+            img_debug = np.zeros_like(self.img)
+
+        for idx, poly in enumerate(l_poly):
             sampled_poly = self._sampling_poly(poly, cy, cx, l_rays)
             if sampled_poly is None:
                 continue
 
             l_poly_samples.append(sampled_poly)
+            if debug:
+                img_debug = dr.Drawing.curve(sampled_poly.exterior, img_debug, color=dr.Color.red)
+                cv2.imwrite(f'{self.output_dir}/sampled_poly.png', img_debug)
 
         return l_poly_samples
 
