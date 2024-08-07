@@ -1,0 +1,20 @@
+name: uruDendro
+channels:
+  - defaults
+dependencies:
+  - python=3.7
+  - pip:
+      - labelme
+      - argparse == 1.4.0
+      - pathlib == 1.0.1
+      - numpy == 1.19.1
+      - matplotlib == 3.3.0
+      - opencv-python == 4.8.1.78
+      - opencv-contrib-python-headless == 4.8.1.78
+      - pandas == 1.1.5
+      - scikit-learn == 0.24.2
+      - natsort == 8.2.0
+      - glob2 == 0.7
+      - shapely == 1.7
+      - imageio
+      - Pillow == 8.4.0

@@ -10,7 +10,7 @@
 
 Install the requirements using the following command:
 ```bash
-pip install -r requirements.txt
+conda env create -f environment.yml 
 ```
 
 ## Download Dataset
