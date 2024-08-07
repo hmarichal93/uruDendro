@@ -78,7 +78,7 @@ class Drawing:
         y = np.array(y).astype(int)
         x = np.array(x).astype(int)
         pts = np.vstack((x,y)).T
-        isClosed=False
+        isClosed=True
         img = cv2.polylines(img, [pts],
                               isClosed, color, thickness)
 

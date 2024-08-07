@@ -12,7 +12,7 @@ from shapely.geometry import Point
 from shapely.geometry.linestring import LineString
 
 
-from lib.chain import Node, euclidean_distance, get_node_from_list_by_angle
+from .chain import Node, euclidean_distance, get_node_from_list_by_angle
 
 
 class Ray(LineString):
@@ -100,6 +100,7 @@ def get_coordinates_from_intersection(inter):
 
     return y, x
 
+from shapely.errors import TopologicalError
 
 def compute_intersection(l_rays, curve, chain_id, center):
     """
@@ -110,21 +111,25 @@ def compute_intersection(l_rays, curve, chain_id, center):
     @param center: disk image center
     @return: nodes list
     """
+
     l_curve_nodes = []
     for radii in l_rays:
-        inter = radii.intersection(curve)
-        if not inter.is_empty:
-            try:
+        try:
+            inter = radii.intersection(curve)
+            if not inter.is_empty:
                 y, x = get_coordinates_from_intersection(inter)
-            except NotImplementedError:
-                continue
-            i, j = np.array(y), np.array(x)
-            params = {'y': i, 'x': j, 'angle': int(radii.direction), 'radial_distance':
-                euclidean_distance([i, j], center), 'chain_id': chain_id}
+                i, j = np.array(y), np.array(x)
+                params = {'y': i, 'x': j, 'angle': int(radii.direction), 'radial_distance':
+                    euclidean_distance([i, j], center), 'chain_id': chain_id}
+                dot = Node(**params)
+                if dot not in l_curve_nodes and get_node_from_list_by_angle(l_curve_nodes, radii.direction) is None:
+                    l_curve_nodes.append(dot)
 
-            dot = Node(**params)
-            if dot not in l_curve_nodes and get_node_from_list_by_angle(l_curve_nodes, radii.direction) is None:
-                l_curve_nodes.append(dot)
-
+        except NotImplementedError:
+            continue
+        except TopologicalError:
+            continue
+    if len(l_curve_nodes) == 0:
+        return None
     return l_curve_nodes
 
