@@ -118,6 +118,9 @@ def compute_intersection(l_rays, curve, chain_id, center):
             raise ValueError('Invalid shapely polygon')
 
     ##########
+    if curve.is_empty:
+        raise
+
     l_curve_nodes = []
     for radii in l_rays:
         try:
@@ -133,6 +136,7 @@ def compute_intersection(l_rays, curve, chain_id, center):
 
             else:
                 print('Empty intersection')
+
 
         except NotImplementedError:
             continue
