@@ -150,9 +150,21 @@ class InfluenceArea:
         if title is not None:
             plt.title(title)
         plt.savefig(f'{self.output_dir}/dt_and_gt.png')
+
+
         # plt.show();
         plt.close()
 
+        plt.figure(figsize=(10, 10));
+        plt.imshow(img);
+        plt.axis('off');
+        if title is not None:
+            plt.title(title)
+        image_name = Path(self.output_dir).stem
+        plt.savefig(f'{self.output_dir}/{image_name}.png')
+
+        # plt.show();
+        plt.close()
 
     def get_x_and_y_coordinates(self, poly: Polygon_node):
         # if type(poly) is Polygon:
@@ -219,9 +231,10 @@ class InfluenceArea:
         # polar
         # https://stackoverflow.com/questions/36513312/polar-heatmaps-in-python
 
-        rad = np.linspace(0, len(self.gt_poly), len(self.gt_poly) + 1)
+        rad = np.linspace(0, len(self.gt_poly), len(self.gt_poly))
         theta = np.linspace(0, 2 * np.pi, self.Nr)
         th, r = np.meshgrid(theta, rad)
+        polar_heat_map = np.abs(polar_heat_map)
 
         cmaps = ['Spectral']
         for cmap_label in cmaps:
@@ -231,7 +244,7 @@ class InfluenceArea:
             ax.set_yticklabels([])
             ax.set_xticklabels([])
             ax.set_theta_zero_location('S')
-            plt.title(f'Heat map radial error between dt and gt')
+            #plt.title(f'Heat map radial error between dt and gt')
             fig.colorbar(pcm, ax=ax, orientation="vertical")
             fig.savefig(f"{self.output_dir}/heat_map_{cmap_label}.png")
 
@@ -494,7 +507,7 @@ class InfluenceArea:
         FP = self.false_positive()
         TN = self.true_negative()
         FN = self.false_negative()
-        self._plot_gt_and_dt_polys(self.img, self.gt_poly, self.dt_poly, n=3, title=f"TP={TP} FP={FP} TN={TN} FN={FN}")
+        self._plot_gt_and_dt_polys(self.img, self.gt_poly, self.dt_poly, n=3)
         return TP, FP, TN, FN
 
     def _plot_influece_area(self, matriz, list_gt_poly):
@@ -567,7 +580,7 @@ def main(dt_file, gt_file, img_filename, output_dir, threshold, cx, cy):
     RMSE = metrics.compute_rmse_global()
     print(f"{Path(img_filename).name} P={P:.2f} R={R:.2f} F={F:.2f} RMSE={RMSE:.2f}")
 
-    #metrics.generate_radial_error_heat_map()
+    metrics.generate_radial_error_heat_map()
 
     return P, R, F, RMSE, TP, FP, TN, FN
 
