@@ -1,7 +1,7 @@
 import setuptools
 setuptools.setup(
-     name="sub-module",
-     version="0.0.1",
-     python_requires=">=3.12.4",
-     packages=["uruDendro"],
+    name="urudendro",
+    version="0.4",
+    python_requires=">=3.11",
+    packages=setuptools.find_packages(include=["urudendro", "urudendro.*"]),
 )

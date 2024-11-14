@@ -1,11 +1,9 @@
 """Script for downloading and preprocessing the dataset."""
 import os
-import sys
 import argparse
 from pathlib import Path
-import json
 
-from lib.io import load_json, write_json
+from urudendro.io import load_json, write_json
 def download_file_and_store_id_in_dir(images_url, dataset_path, local_filename="images.zip"):
 
     os.system(f"cd {dataset_path} && wget -r -np -nH --cut-dirs=3 -R index.html {images_url}")

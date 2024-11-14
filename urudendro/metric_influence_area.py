@@ -10,15 +10,14 @@ You should have received a copy of the GNU Affero General Public License along w
 import cv2
 import numpy as np
 import argparse
-from shapely.geometry import Polygon, LineString
+from shapely.geometry import Polygon
 from pathlib import Path
 import cv2 as cv
 import matplotlib.pyplot as plt
 
-from .lib.io import load_image, load_json
-from .lib.sampling import build_rays, compute_intersection
-from .lib import chain as ch
-from .lib import drawing as dr
+from urudendro.io import load_image, load_json
+from urudendro.sampling import build_rays, compute_intersection
+from urudendro import chain as ch, drawing as dr
 
 FP_ID = -1
 

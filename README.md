@@ -13,26 +13,45 @@ Install the requirements using the following command:
 conda env create -f environment.yml 
 ```
 
+## Installation
+```bash
+pip install .
+```
+
 ## Download Dataset
 Download the dataset using the following command:
-```bash
-python dataset.py --download --dataset_path DATASET_PATH
+```python 
+from urudendro.dataset import download_dataset
+DATASET_PATH = 'path/to/dataset'
+download_dataset(DATASET_PATH)
 ```
 where DATASET_PATH is the path where the dataset will be downloaded. DATASET_PATH must be absolute path.
 
 ## Visualize Dataset
 Visualize the dataset using the following command:
-```bash
-python dataset.py --visualize --annotation_file ANNOTATION_FILE
+```python
+from urudendro.dataset import visualize_annotation
+ANNOTATION_FILE = 'path/to/annotation/file'
+
+visualize_annotation(ANNOTATION_FILE)
 ```
 where ANNOTATION_FILE is the path to the annotation file.
 
 ## Metric Evaluation
 Tree ring Detection evaluation metrics used by UruDendro. The evaluation code provided here can be used to obtain results on the publicly available UruDendro dataset. It computes multiple metrics described below.
-```bash
-python metric_influence_area.py --dt_filename DETECTION_FILENAME
- --gt_filename GROUND_TRUTH_FILENAME  --img_FILENAME IMAGE_FILENAME 
- --cx CX --cy CY --th THRESHOLD --output_dir OUTPUT_DIR
+```python 
+from urudendro.metric_influence_area import main as metric
+    
+DETECTION_FILENAME = 'path/to/detection/file'
+GROUND_TRUTH_FILENAME = 'path/to/ground/truth/file'
+IMAGE_FILENAME = 'path/to/image/file'
+CX = 0
+CY = 0
+THRESHOLD = 0.5
+OUTPUT_DIR = 'path/to/output/directory'
+
+P, R, F, RMSE, TP, FP, TN, FN = metric(DETECTION_FILENAME, GROUND_TRUTH_FILENAME, IMAGE_FILENAME, CX, CY, THRESHOLD, OUTPUT_DIR)
+
 ```
 where DETECTION_FILENAME is the path to the detection file, GROUND_TRUTH_FILENAME is the path to the ground truth file,
 IMAGE_FILENAME is the path to the image file, CX is the x pith coordinate in pixels, CY is the y pith coordinate in pixel, 
