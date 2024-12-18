@@ -32,8 +32,9 @@ Visualize the dataset using the following command:
 ```python
 from urudendro.dataset import visualize_annotation
 ANNOTATION_FILE = 'path/to/annotation/file'
-
-visualize_annotation(ANNOTATION_FILE)
+IMAGE_PATH = 'path/to/image/file'
+OUTPUT_PATH = 'path/to/output/directory'
+visualize_annotation(ANNOTATION_FILE, IMAGE_PATH, OUTPUT_PATH )
 ```
 where ANNOTATION_FILE is the path to the annotation file.
 
