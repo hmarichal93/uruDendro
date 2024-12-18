@@ -305,11 +305,26 @@ def write_ring_shapes(shapes, output_path_ann, image_path):
     al.write(json_content)
     return
 
+
+def draw_curves_over_image(
+            json_path = "/data/maestria/datasets/Pinus_Taeda/PinusTaedaV2/annotations/oscuro_claro_tardio(importante)/postprocessed/veronica/B2C.json" ,
+            image_path = "/data/maestria/datasets/Pinus_Taeda/PinusTaedaV2/images/original/B2C.jpg",
+            output_path="output.jpg"):
+
+    al = AL_LateWood_EarlyWood(json_path, output_path, image_path=image_path)
+    shapes = al.read()
+    image = load_image(image_path)
+    #convert image to BGR
+    canvas = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+    for shape in shapes:
+        shapely_curve = Polygon(shape.points)
+        canvas = Drawing.curve(shapely_curve.exterior.coords, canvas, color=Color.blue, thickness=2)
+
+    cv2.imwrite(output_path, canvas)
+    return
+
 if __name__ == "__main__":
-    json_path = "./input/A4/A4_latewood.json"
-    image_path = "./input/A4/A4.jpg"
-    harvest_date = 2016
-    ring_relabelling(image_path, json_path, harvest_date)
-    print("Done")
+    draw_curves_over_image()
 
 

@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 from urudendro.io import load_json, write_json
+from urudendro.labelme import draw_curves_over_image
 def download_file_and_store_id_in_dir(images_url, dataset_path, local_filename="images.zip"):
 
     os.system(f"cd {dataset_path} && wget -r -np -nH --cut-dirs=3 -R index.html {images_url}")
@@ -60,8 +61,9 @@ def download_dataset(dataset_path="/home/henry/Documents/repo/fing/uruDendro/dat
     #5.0 process annotations
     process_annotations(annotations_path, images_path)
     return
-def visualize_annotation(annotation_file):
-    os.system(f"labelme {annotation_file}")
+def visualize_annotation(annotation_path, image_path, output_path):
+    #os.system(f"labelme {annotation_path}")
+    draw_curves_over_image(annotation_path, image_path, output_path)
     return
 
 
@@ -72,9 +74,11 @@ if __name__ == "__main__":
     parser.add_argument('--dataset_path', type=str, help='path to download dataset')
     parser.add_argument('--visualize', action='store_true', help='visualize annotation')
     parser.add_argument('--annotation_file', type=str, help='annotation file to visualize')
+    parser.add_argument('--image_file', type=str, help='image file to visualize')
+    parser.add_argument('--output_path', type=str, help='output path to save visualization')
     args = parser.parse_args()
     if args.download:
         download_dataset(args.dataset_path)
 
     if args.visualize:
-        visualize_annotation(args.annotation_file)
+        visualize_annotation(args.annotation_file, args.image_file, args.output_path)
