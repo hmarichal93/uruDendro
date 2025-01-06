@@ -60,6 +60,17 @@ THRESHOLD is the threshold to consider a detection as valid (between 0 and 1) an
 results output directory.
 
 
+## Remove Background 
+
+Remove the background of the image using the following command:
+```python
+from urudendro.remove_salient_object import remove_salient_object
+IMAGE_PATH = 'path/to/image/file'
+OUTPUT_PATH = 'path/to/output/directory'
+remove_salient_object(IMAGE_PATH, OUTPUT_PATH)
+```
+where IMAGE_PATH is the path to the image file and OUTPUT_PATH is the path to the output directory.
+
 ## Citation
 ```
 @misc{marichal2024urudendro,
