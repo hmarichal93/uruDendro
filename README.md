@@ -65,8 +65,8 @@ results output directory.
 Remove the background of the image using the following command:
 ```python
 from urudendro.remove_salient_object import remove_salient_object
-IMAGE_PATH = 'path/to/image/file'
-OUTPUT_PATH = 'path/to/output/directory'
+IMAGE_PATH = 'input/F02c.jpg'
+OUTPUT_PATH = 'input/F02c_segmented.jpg'
 remove_salient_object(IMAGE_PATH, OUTPUT_PATH)
 ```
 where IMAGE_PATH is the path to the image file and OUTPUT_PATH is the path to the output directory.
