@@ -4,6 +4,8 @@ import cv2
 import numpy as np
 from torchvision import transforms
 from PIL import Image
+Image.MAX_IMAGE_PIXELS = None
+
 from urudendro.u2net import U2NET
 
 
