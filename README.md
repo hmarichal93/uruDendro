@@ -15,6 +15,8 @@ conda env create -f environment.yml
 
 ## Installation
 ```bash
+sudo apt-get install git-lfs
+git lfs pull
 python setup.py install
 ```
 
