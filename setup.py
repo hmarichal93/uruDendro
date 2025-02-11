@@ -16,6 +16,7 @@ class PostDevelopCommand(develop):
         #shutil.copy(src, dst)
         print(f"cp {src} {dst}")
         os.system(f"cp {src} {dst}")
+        os.system(f"mv u2net.pth urudendro/")
         develop.run(self)
 
 class PostInstallCommand(install):
@@ -26,6 +27,7 @@ class PostInstallCommand(install):
         dst = os.path.join(python_lib_dir, "urudendro", "u2net.pth")
         print(f"cp {src} {dst}")
         os.system(f"cp {src} {dst}")
+        os.system(f"mv u2net.pth urudendro/")
         install.run(self)
 
 setuptools.setup(

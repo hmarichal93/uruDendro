@@ -15,7 +15,7 @@ conda env create -f environment.yml
 
 ## Installation
 ```bash
-pip install .
+python setup.py install
 ```
 
 ## Download Dataset
