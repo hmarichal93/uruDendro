@@ -10,6 +10,7 @@ import shutil
 class PostDevelopCommand(develop):
     """Post-installation for development mode."""
     def run(self):
+        develop.run(self)
         python_lib_dir = sysconfig.get_path("purelib")
         src = "u2net.pth"
         dst = os.path.join(python_lib_dir, "urudendro", "u2net.pth")
@@ -17,18 +18,18 @@ class PostDevelopCommand(develop):
         print(f"cp {src} {dst}")
         os.system(f"cp {src} {dst}")
         os.system(f"mv u2net.pth urudendro/")
-        develop.run(self)
 
 class PostInstallCommand(install):
     """Post-installation for installation mode."""
     def run(self):
+        install.run(self)
         python_lib_dir = sysconfig.get_path("purelib")
         src = "u2net.pth"
         dst = os.path.join(python_lib_dir, "urudendro", "u2net.pth")
+        #shutil.copy(src, dst)
         print(f"cp {src} {dst}")
         os.system(f"cp {src} {dst}")
         os.system(f"mv u2net.pth urudendro/")
-        install.run(self)
 
 setuptools.setup(
     name="urudendro",
