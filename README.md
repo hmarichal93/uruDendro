@@ -1,4 +1,8 @@
 # UruDendro, a public dataset of cross-section images of Pinus Taeda 
+
+**Accepted at Annals of Forest Science (ANFS) Journal 2025** [Arxiv](https://doi.org/10.48550/arXiv.2504.16242) | [Zenode](https://doi.org/10.5281/zenodo.15110646)
+
+
 [Web-site](https://iie.fing.edu.uy/proyectos/madera/) | [Paper](https://arxiv.org/abs/2404.10856)
 
 ## Requirements
