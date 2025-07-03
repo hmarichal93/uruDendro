@@ -3,7 +3,7 @@
 **Accepted at Annals of Forest Science (ANFS) Journal 2025.** 
 
 
-[Web-site](https://iie.fing.edu.uy/proyectos/madera/) | [Paper](https://arxiv.org/abs/2404.10856) | [Zenode](https://doi.org/10.5281/zenodo.15110646)
+[Web-site](https://iie.fing.edu.uy/proyectos/madera/) | [Paper](https://rdcu.be/euo3F) | [Zenode](https://doi.org/10.5281/zenodo.15110646)
 
 ## Requirements
 - Python 3.6
