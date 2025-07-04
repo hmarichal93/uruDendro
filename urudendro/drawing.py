@@ -11,6 +11,7 @@ You should have received a copy of the GNU Affero General Public License along w
 import numpy as np
 import cv2
 
+from shapely.geometry import Polygon
 
 
 class Color:
@@ -105,4 +106,35 @@ class Drawing:
         end_point = (x[1], y[1])
         image = cv2.line(img, start_point, end_point, color, thickness)
 
+        return image
+
+    @staticmethod
+    def fill_growth_ring(inner_ring: Polygon, outer_ring: Polygon, image: np.ndarray, color=(0, 255, 0),
+                         background_color=(0, 0, 0)):
+        """
+        Fill the area between two polygons representing growth rings.
+        ---usage
+        from urudendro.labelme import AL_LateWood_EarlyWood
+
+        al = AL_LateWood_EarlyWood(ann_path, None)
+        shapes = al.read()
+        #draw area
+        inner_ring = shapes[3].points[:,[1, 0]]  # swap x and y coordinates
+        poly_inner = Polygon(inner_ring)
+        outer_ring = shapes[4].points[:,[1, 0]]  # swap x and y coordinates
+        poly_outer = Polygon(outer_ring)
+        #draw the area between the inner and outer polygons
+        image_draw = Drawing.fill_growth_ring(poly_inner, poly_outer, image_draw, color=Color.red,
+                                              background_color=Color.white)
+
+
+        :param inner_ring: Polygon representing the inner ring.
+        :param outer_ring: Polygon representing the outer ring.
+        :param image: Image on which to draw the filled area.
+        :param color: Color to fill the area with.
+        :param thickness: Thickness of the fill. -1 means fill the polygon.
+        :return: Image with filled area.
+        """
+        cv2.fillPoly(image, [np.array(outer_ring.exterior.coords).astype(np.int32)], color)
+        cv2.fillPoly(image, [np.array(inner_ring.exterior.coords).astype(np.int32)], background_color)
         return image
