@@ -234,12 +234,17 @@ class InfluenceArea:
         theta = np.linspace(0, 2 * np.pi, self.Nr)
         th, r = np.meshgrid(theta, rad)
         polar_heat_map = np.abs(polar_heat_map)
+        from matplotlib.colors import LinearSegmentedColormap
 
-        cmaps = ['Spectral']
+        # Crear colormap de verde a rojo
+        colors = ["green", "yellow", "red"]
+        cmap = LinearSegmentedColormap.from_list("green_to_red", colors)
+        #cmaps = ['Spectral']
+        cmaps = [cmap]
         for cmap_label in cmaps:
             fig = plt.figure(figsize=(10, 10))
             ax = fig.add_subplot(111, projection='polar')
-            pcm = ax.pcolormesh(th, r, polar_heat_map, cmap=plt.get_cmap(cmap_label))
+            pcm = ax.pcolormesh(th, r, polar_heat_map, cmap=cmap_label)#plt.get_cmap(cmap_label))
             ax.set_yticklabels([])
             ax.set_xticklabels([])
             ax.set_theta_zero_location('S')
