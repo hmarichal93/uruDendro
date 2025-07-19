@@ -58,3 +58,6 @@ footer {
   padding: 1em 0;
   flex-shrink: 0; /* Prevents the footer from shrinking */
 }
+h2 {
+  font-size: 1em; /* Adjust the size as needed */
+}
