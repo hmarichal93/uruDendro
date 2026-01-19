@@ -1,9 +1,13 @@
 # UruDendro: Cross-Section Images of Pinus Taeda
 
-A dataset and Python toolkit for automated tree ring detection and analysis in Pinus Taeda cross-sections.
+[Project Page](https://iie.fing.edu.uy/proyectos/madera/)   
 
-[Paper](https://rdcu.be/euo3F) • [Dataset (Zenodo)](https://doi.org/10.5281/zenodo.15110646) • [Project Page](https://iie.fing.edu.uy/proyectos/madera/)  
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](LICENSE)
+This repository contains the references for the dataset UruDendro and UruDendro4, 64, and 102 annotated cross-section images from trees harvested in 2019 and 2024 respectively.
+
+* UruDendro, a public dataset of 64 cross-section images and manual annual ring delineations of Pinus taeda L., ANFS 2025,]. [Paper](https://rdcu.be/euo3F) • [Dataset (Zenodo)](https://doi.org/10.5281/zenodo.15110646)
+
+* UruDendro4: A Benchmark Dataset for Automatic Tree-Ring Detection in Cross-Section Images of Pinus taeda L., ICPRS-25. [Article](10.1109/icprs66293.2025.11302831) | [ArXiv](https://arxiv.org/pdf/2511.20935) | [Dataset](https://doi.org/10.5281/zenodo.15653339)
+
 
 ---
 
